@@ -488,6 +488,8 @@
   }
 
   function _xjs(xml) {
+    var _xml = xml.normalize('NFD')
+
     var re =
         /<(((([\u0300-\u036f\w\-\.]+):)?([\u0300-\u036f\w\-\.]+))([^>]+)?|\/((([\u0300-\u036f\w\-\.]+):)?([\u0300-\u036f\w\-\.]+))|\?(\w+)([^\?]+)?\?|(!--([^\-]|-[^\-])*--))>|([^<>]+)/gi,
       match,
@@ -545,7 +547,7 @@
         },
       )
     }
-    while ((match = re.exec(xml.normalize('NFD')))) {
+    while ((match = re.exec(_xml))) {
       node = null
       if ((name = match[5])) {
         newNs = false
